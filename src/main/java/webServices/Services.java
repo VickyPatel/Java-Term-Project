@@ -7,14 +7,20 @@
 package webServices;
 import Credentials.Connect;
 import static Credentials.Connect.getConnection;
+import java.io.StringReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
@@ -24,13 +30,36 @@ import javax.ws.rs.core.Response;
  * @author c0633648
  */
 @Path("/advertise")
-public class Person {
+public class Services {
     
     @GET
     @Produces("application/json")
     public Response get() {
       return Response.ok(getResults("SELECT * FROM person")).build();
     }
+    
+    @POST
+    @Consumes("application/json")
+    public void insertPerson(String str){
+        try {
+            JsonObject json = Json.createReader(new StringReader(str)).readObject();
+            String name = json.getString("name");
+            String email = json.getString("email");
+            String pass = json.getString("password");
+            
+            Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO person (name, email, password) VALUES (?, ?, ?)");
+            pstmt.setString(1, name);
+            pstmt.setString(2, email);
+            pstmt.setString(2, pass);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Services.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //return get(); 
+    }
+    
+    
     
      public static JsonArray getResults(String sql, String... params) {
         JsonArray json = null;
