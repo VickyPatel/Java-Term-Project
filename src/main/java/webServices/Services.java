@@ -40,9 +40,9 @@ public class Services {
     
     @POST
     @Consumes("application/json")
-    public void insertPerson(String str){
+    public void insertPerson(JsonObject  json){
         try {
-            JsonObject json = Json.createReader(new StringReader(str)).readObject();
+           // JsonObject json = Json.createReader(new StringReader(str)).readObject();
             String name = json.getString("name");
             String email = json.getString("email");
             String pass = json.getString("password");
