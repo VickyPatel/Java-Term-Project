@@ -26,21 +26,28 @@
         </script>
     </head>
     <body>
-        <form method="post">
-            <h:outputLabel value="Name: " />
-            <h:inputText id="name" value="#{person.name}" ></h:inputText>
+        <form method="post"  >
+            <!--            <h:outputLabel value="Name: " />
+                        <h:inputText id="name" value="#{person.name}" ></h:inputText>
+            
+                        <h:outputLabel value="Email: " />
+                        <h:inputText id="email" value="#{person.email}"></h:inputText>
+            
+                        <h:outputLabel value="Password: " />
+                        <h:inputText id="password" value="#{person.password}"></h:inputText>
+            
+                        <h:outputLabel value="Re-Enter Password:  " />
+                        <h:inputText ></h:inputText>
+            
+                        <h:button id="register"></h:button>
+                        <h:commandButton ></h:commandButton>-->
 
-            <h:outputLabel value="Email: " />
-            <h:inputText id="email" value="#{person.email}"></h:inputText>
+            Name: <input id="name"></input>
+            Email: <input id="email"></input>
+            Password:  <input id="password"></input>
+            <button id="register">Register</button>>
 
-            <h:outputLabel value="Password: " />
-            <h:inputText id="password" value="#{person.password}"></h:inputText>
 
-            <h:outputLabel value="Re-Enter Password:  " />
-            <h:inputText ></h:inputText>
-
-            <h:button id="register"></h:button>
-            <h:commandButton ></h:commandButton>
         </form>
     </body>
 </html>
