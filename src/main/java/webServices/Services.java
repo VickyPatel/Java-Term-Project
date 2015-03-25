@@ -77,6 +77,8 @@ public class Services {
                 array.add(Json.createObjectBuilder()
                         .add("id", rs.getInt("id"))
                         .add("name", rs.getString("name"))
+                        .add("email", rs.getString("email"))
+                        .add("password", rs.getString("password"))
                 );
             }
             json = array.build();
