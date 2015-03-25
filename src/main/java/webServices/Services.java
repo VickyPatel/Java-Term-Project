@@ -51,7 +51,7 @@ public class Services {
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO person (name, email, password) VALUES (?, ?, ?)");
             pstmt.setString(1, name);
             pstmt.setString(2, email);
-            pstmt.setString(2, pass);
+            pstmt.setString(3, pass);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Services.class.getName()).log(Level.SEVERE, null, ex);
