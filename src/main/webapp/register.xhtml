@@ -18,8 +18,13 @@
                         data: JSON.stringify({"name": $("#name").val(),
                             "email": $("#email").val(),
                             "password": $("#password").val()}),
-                        method: "post"
-                                //success: getBlog
+                        method: "post",
+                        success: function (data){
+                            $("#output").text(data);
+                        }
+                        error: function (data){
+                            $("#output").text(data);
+                        }
                     });
                 });
             });
@@ -28,7 +33,7 @@
     <body>
         <form method="post"  >
                     <h:outputLabel value="Name: " />
-                        <h:inputText id="name" value="#{person.name}" ></h:inputText>
+                    <h:inputText id="name" value="#{person.name}" ></h:inputText>
             
                         <h:outputLabel value="Email: " />
                         <h:inputText id="email" value="#{person.email}"></h:inputText>
@@ -41,6 +46,8 @@
             
                         <h:button id="register"></h:button>
                         <h:commandButton ></h:commandButton>
+                        
+                        <h:outputText id="output"></h:outputText>
 
 <!--            Name: <input id="name"></input>
             Email: <input id="email"></input>
