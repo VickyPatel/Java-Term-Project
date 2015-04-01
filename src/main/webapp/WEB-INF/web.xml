@@ -8,6 +8,7 @@
 
     <servlet>
       <servlet-name>Rest</servlet-name>  
+      <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
       <load-on-startup>1</load-on-startup>
    </servlet>
    <servlet-mapping>
