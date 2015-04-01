@@ -25,10 +25,10 @@ and open the template in the editor.
                             "password": $("#password").val()}),
                         method: "post",
                         success: function (data){
-                            $("#output").text(data);
+                            $("#output").text("success");
                         }
                         error: function (data){
-                            $("#output").text(data);
+                            $("#output").text("fail");
                         }
                     });
                 });
@@ -48,11 +48,11 @@ and open the template in the editor.
                         <h:outputLabel value="Password: " />
                         <h:inputText id="password" value="#{person.password}"></h:inputText>
             
-                        <h:outputLabel value="Re-Enter Password:  " />
-                        <h:inputText ></h:inputText>
+<!--                        <h:outputLabel value="Re-Enter Password:  " />
+                        <h:inputText ></h:inputText>-->
             
-                        <h:button id="register"></h:button>
-                        <h:commandButton ></h:commandButton>
+                        
+                        <h:commandButton id="register" value="Register"></h:commandButton>
                         
                         <h:outputText id="output"></h:outputText>
 
