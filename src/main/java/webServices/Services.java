@@ -40,7 +40,8 @@ public class Services {
     
     @POST
     @Consumes("application/json")
-    public void insertPerson(JsonObject  json){
+    public String insertPerson(JsonObject  json){
+        int i =0;
         try {
            // JsonObject json = Json.createReader(new StringReader(str)).readObject();
             String name = json.getString("name");
@@ -52,11 +53,15 @@ public class Services {
             pstmt.setString(1, name);
             pstmt.setString(2, email);
             pstmt.setString(3, pass);
-            pstmt.executeUpdate();
+            i = pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Services.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //return get(); 
+        if(i == 0 ){
+                return "Data is not inserted into data base";
+            }else{
+                return "Data is  inserted  into data base";
+            }
     }
     
     
