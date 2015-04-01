@@ -13,7 +13,7 @@ import javax.ws.rs.core.Application;
  *
  * @author c0633648
  */
-@javax.ws.rs.ApplicationPath("web")
+@javax.ws.rs.ApplicationPath("Rest")
 public class ApplicationConfig extends Application {
 
     @Override
