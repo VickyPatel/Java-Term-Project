@@ -23,13 +23,13 @@ and open the template in the editor.
                         data: JSON.stringify({"name": $("#name").val(),
                             "email": $("#email").val(),
                             "password": $("#password").val()}),
-                        method: "post",
-                        success: function (data){
-                            $("#output").text("success");
-                        }
-                        error: function (data){
-                            $("#output").text("fail");
-                        }
+                        method: "post"
+//                        success: function (data){
+//                            $("#output").text("success");
+//                        }
+//                        error: function (data){
+//                            $("#output").text("fail");
+//                        }
                     });
                 });
             });
