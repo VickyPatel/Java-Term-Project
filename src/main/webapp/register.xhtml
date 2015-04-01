@@ -31,10 +31,11 @@
         </script>
     </head>
     <body>
-        <form method="post"  >
-                    <h:outputLabel value="Name: " />
-                    <h:inputText id="name" value="#{person.name}" ></h:inputText>
+        <h:form >
             
+                        <h:outputLabel value="Name: " />
+                        <h:inputText id="name" value="#{person.name}" ></h:inputText>
+
                         <h:outputLabel value="Email: " />
                         <h:inputText id="email" value="#{person.email}"></h:inputText>
             
@@ -54,6 +55,6 @@
             Password:  <input id="password"></input>
             <button id="register">Register</button>-->
 
-        </form>
+        </h:form>
     </body>
 </html>
