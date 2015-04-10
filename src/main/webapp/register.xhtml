@@ -14,52 +14,44 @@ and open the template in the editor.
         <script src="http://code.jquery.com/jquery.min.js"></script>
         <script>
             $(document).ready(function() {
-                // Configure an On-Click Listener to Update the Form
-                $('#register').click(function() {
-                    $.ajax({
-                        url: "./web/advertise",
-                        dataType: "json",
-                        contentType: 'application/json; charset=UTF-8',
-                        data: JSON.stringify({"name": $("#name").val(),
+
+            var getResult = function(data) {
+            $('#result').html('');
+                    for (var i = 0; i < data.length; i++)
+                    $('#blog').append("Registration Successful");
+                    $('#name').val('');
+                    $('#email').val('');
+                    $('#password').val('');
+            };
+           
+            // Configure an On-Click Listener to Update the Form
+            $('#register').click(function() {
+            $.ajax({
+                    url: "./web/advertise",
+                    dataType: "json",
+                    contentType: 'application/json; charset=UTF-8',
+                    data: JSON.stringify({"name": $("#name").val(),
                             "email": $("#email").val(),
                             "password": $("#password").val()}),
-                        method: "post"
-                        success: function (data){
-                            $("#output").text("success");
-                        }
-                        error: function (data){
-                            $("#output").text("fail");
-                        }
-                    });
-                });
+                    method: "post"
+                    success: function (data){
+                    getResult(data);
+                    }
+
+            });
+            });
             });
         </script>
     </head>
     <body>
 
-        <form method="post" >
-            <!--            
-                                    <h:outputLabel value="Name: " />
-                                    <h:inputText id="name" value="#{person.name}" ></h:inputText>
-            
-                                    <h:outputLabel value="Email: " />
-                                    <h:inputText id="email" value="#{person.email}"></h:inputText>
-                        
-                                    <h:outputLabel value="Password: " />
-                                    <h:inputText id="password" value="#{person.password}"></h:inputText>
-                        
-                                    <h:outputLabel value="Re-Enter Password:  " />
-                                    <h:inputText ></h:inputText>
-                        
-                                    
-                                    <h:commandButton id="register" value="Register"></h:commandButton>
-                                    
-                                    <h:outputText id="output"></h:outputText>-->
-
+        <form >
+   
             Name: <input id="name"></input>
             Email: <input id="email"></input>
             Password:  <input id="password"></input>
             <button id="register">Register</button>
+            <div id="result"></div>
 
         </form>
 
