@@ -42,11 +42,11 @@ public class Services {
     @Path("{login}")
     @Consumes("application/json")
     public String getUser(JsonObject json) {
-
+        JsonArray array = null;
         String email = json.getString("email");
         String pass = json.getString("password");
 
-        JsonArray array = getResults("SELECT * FROM person WHERE email=" + email + "AND password=" + pass);
+        array = getResults("SELECT * FROM person WHERE email=" + email + "AND password=" + pass);
 
         if (array.size() > 0) {
             return "WelCome";
