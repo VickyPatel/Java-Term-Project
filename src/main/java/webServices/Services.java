@@ -40,8 +40,9 @@ public class Services {
     
     @POST
     @Consumes("application/json")
-    public void insertPerson(JsonObject  json){
+    public Response insertPerson(JsonObject  json){
        
+        Response result;
         try {
            // JsonObject json = Json.createReader(new StringReader(str)).readObject();
             String name = json.getString("name");
@@ -54,9 +55,13 @@ public class Services {
             pstmt.setString(2, email);
             pstmt.setString(3, pass);
             pstmt.executeUpdate();
+            result = Response.ok().build();
+            
+            
         } catch (SQLException ex) {
-            Logger.getLogger(Services.class.getName()).log(Level.SEVERE, null, ex);
+            result = Response.status(500).entity(ex.getMessage()).build();
         }
+        return result;
        
     }
     
