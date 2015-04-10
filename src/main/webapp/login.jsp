@@ -25,7 +25,7 @@
                             "password": $("#password").val()}),
                     method: "post"
                     success: function (data){
-                    $("#result").text(data);
+                    $("#result").html(data);
                     }
             });
             });
