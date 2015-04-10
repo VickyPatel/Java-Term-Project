@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package webServices;
+
 import Credentials.Connect;
 import static Credentials.Connect.getConnection;
 import java.io.StringReader;
@@ -31,24 +31,41 @@ import javax.ws.rs.core.Response;
  */
 @Path("/advertise")
 public class Services {
-    
+
     @GET
     @Produces("application/json")
     public Response get() {
-      return Response.ok(getResults("SELECT * FROM person")).build();
+        return Response.ok(getResults("SELECT * FROM person")).build();
     }
-    
+
+    @POST
+    @Path("{login}")
+    @Consumes("application/json")
+    public String getUser(JsonObject json) {
+
+        String email = json.getString("email");
+        String pass = json.getString("password");
+
+        JsonArray array = getResults("SELECT * FROM person WHERE email=" + email + "AND password=" + pass);
+
+        if (array.size() > 0) {
+            return "WelCome";
+        } else {
+            return "Invalid email or Password";
+        }
+    }
+
     @POST
     @Consumes("application/json")
-    public Response insertPerson(JsonObject  json){
-       
+    public Response insertPerson(JsonObject json) {
+
         Response result;
         try {
-           // JsonObject json = Json.createReader(new StringReader(str)).readObject();
+            // JsonObject json = Json.createReader(new StringReader(str)).readObject();
             String name = json.getString("name");
             String email = json.getString("email");
             String pass = json.getString("password");
-            
+
             Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO person (name, email, password) VALUES (?, ?, ?)");
             pstmt.setString(1, name);
@@ -56,18 +73,15 @@ public class Services {
             pstmt.setString(3, pass);
             pstmt.executeUpdate();
             result = Response.ok().build();
-            
-            
+
         } catch (SQLException ex) {
             result = Response.status(500).entity(ex.getMessage()).build();
         }
         return result;
-       
+
     }
-    
-    
-    
-     public static JsonArray getResults(String sql, String... params) {
+
+    public static JsonArray getResults(String sql, String... params) {
         JsonArray json = null;
         try {
             Connection conn = getConnection();
@@ -89,7 +103,7 @@ public class Services {
             }
             json = array.build();
         } catch (SQLException ex) {
-           // Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            // Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
         return json;
     }
