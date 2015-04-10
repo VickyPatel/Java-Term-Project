@@ -49,8 +49,11 @@ public class Services {
         array = getResults("SELECT * FROM person WHERE email= ? AND password= ?",email,pass);
 
         if (array.size() > 0) {
+             System.out.println("correct user detail");
             return "WelCome";
+           
         } else {
+            System.out.println("incorrect user detail");
             return "Invalid email or Password";
         }
     }
