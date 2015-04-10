@@ -9,7 +9,7 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
-        <title>TODO supply a title</title>
+        <title>Registration Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script src="http://code.jquery.com/jquery.min.js"></script>
         <script>
@@ -18,7 +18,7 @@ and open the template in the editor.
             var getResult = function(data) {
             $('#result').html('');
                    
-                    $('#blog').append("Registration Successful");
+                    $('#result').append("Registration Successful");
                     $('#name').val('');
                     $('#email').val('');
                     $('#password').val('');
@@ -36,6 +36,9 @@ and open the template in the editor.
                     method: "post"
                     success: function (data){
                     getResult(data);
+                    },
+                    error: function (jqXHR, status, err) {
+                         alert("Local error callback.");
                     }
 
             });
