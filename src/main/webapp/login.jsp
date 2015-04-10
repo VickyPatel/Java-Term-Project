@@ -23,7 +23,7 @@
                     contentType: 'application/json; charset=UTF-8',
                     data: JSON.stringify({"email": $("#email").val(),
                             "password": $("#password").val()}),
-                    method: "post"
+                    method: "post",
                     success: function (data){
                     $("#result").html(data);
                     }
@@ -35,12 +35,12 @@
     <body>
          <form >
              
-            <div id="result"></div> 
+            
             Email: <input id="email"></input>
             Password:  <input id="password"></input>
             <button id="login">LogIn</button>
             
-
+            <div id="result"></div> 
         </form>
     </body>
 </html>
