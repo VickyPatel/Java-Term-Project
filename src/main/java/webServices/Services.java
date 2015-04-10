@@ -46,12 +46,15 @@ public class Services {
         String email = json.getString("email");
         String pass = json.getString("password");
 
-        array = getResults("SELECT * FROM person WHERE email= ? AND password= ?",email,pass);
+        array = getResults("SELECT * FROM person WHERE email= ? AND password= ?", email, pass);
 
+        for (javax.json.JsonValue jsonValue : array) {
+            System.out.println(jsonValue);
+        }
         if (array.size() > 0) {
-             System.out.println("correct user detail");
+            System.out.println("correct user detail");
             return "WelCome";
-           
+
         } else {
             System.out.println("incorrect user detail");
             return "Invalid email or Password";
