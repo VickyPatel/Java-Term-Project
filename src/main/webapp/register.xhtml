@@ -13,33 +13,32 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script src="http://code.jquery.com/jquery.min.js"></script>
         <script>
-            $(document).ready(function() {
+        $(document).ready(function() {
 
-            var getResult = function(data) {
-            $('#result').html('');
-                   
-                    $('#result').append("Registration Successful");
-                    $('#name').val('');
-                    $('#email').val('');
-                    $('#password').val('');
-            };
+//            var getResult = function(data) {
+//                    $('#result').html('');    
+//                    $('#result').append("Registration Successful");
+//                    $('#name').val('');
+//                    $('#email').val('');
+//                    $('#password').val('');
+//            };
            
             // Configure an On-Click Listener to Update the Form
             $('#register').click(function() {
-            $.ajax({
+                 $.ajax({
                     url: "./web/advertise",
                     dataType: "json",
                     contentType: 'application/json; charset=UTF-8',
                     data: JSON.stringify({"name": $("#name").val(),
                             "email": $("#email").val(),
                             "password": $("#password").val()}),
-                    method: "post"
+                    method: "post",
                     success: function (data){
-                    getResult(data);
+                   // getResult(data);
                     }
+                });
             });
-            });
-            });
+        });
         </script>
     </head>
     <body>

@@ -7,6 +7,7 @@ package webServices;
 
 import Credentials.Connect;
 import static Credentials.Connect.getConnection;
+import java.io.Serializable;
 import java.io.StringReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -24,14 +27,19 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+import personDetail.Person;
 
 /**
  *
  * @author c0633648
  */
 @Path("/advertise")
-public class Services {
+@SessionScoped
+public class Services implements Serializable{
 
+    @EJB
+    Person person;
+    
     @GET
     @Produces("application/json")
     public Response get() {
@@ -65,6 +73,7 @@ public class Services {
     @Consumes("application/json")
     public Response insertPerson(JsonObject json) {
 
+     
         Response result;
         try {
             // JsonObject json = Json.createReader(new StringReader(str)).readObject();
@@ -78,7 +87,11 @@ public class Services {
             pstmt.setString(2, email);
             pstmt.setString(3, pass);
             pstmt.executeUpdate();
-            result = Response.ok().build();
+            
+            person = new Person(json);
+            
+           
+            result = Response.ok(person.toJSON()).build();
 
         } catch (SQLException ex) {
             result = Response.status(500).entity(ex.getMessage()).build();

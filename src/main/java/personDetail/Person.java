@@ -5,11 +5,9 @@ package personDetail;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import javax.faces.bean.ManagedBean;
-
-
+import javax.json.Json;
+import javax.json.JsonObject;
 
 /**
  *
@@ -17,6 +15,7 @@ import javax.faces.bean.ManagedBean;
  */
 @ManagedBean
 public class Person {
+
     public String name;
     public String email;
     public String password;
@@ -44,7 +43,22 @@ public class Person {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
-    
+
+    public Person(JsonObject json) {
+
+        this.name = json.getString("name");
+        this.email = json.getString("email");
+        this.password = json.getString("password");
+
+    }
+
+    public JsonObject toJSON() {
+        JsonObject json = Json.createObjectBuilder()
+                .add("name", this.name)
+                .add("email", this.email)
+                .add("password", this.password)
+                .build();
+        return json;
+    }
+
 }
