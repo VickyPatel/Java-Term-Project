@@ -21,7 +21,8 @@
                     url: "./web/advertise/login",
                     dataType: "text",
                     contentType: 'application/json; charset=UTF-8',
-                    data: JSON.stringify({"email": $("#email").val(),
+                    data: JSON.stringify({
+                            "email": $("#email").val(),
                             "password": $("#password").val()}),
                     method: "post",
                     success: function (data){
