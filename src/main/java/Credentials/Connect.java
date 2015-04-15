@@ -27,7 +27,7 @@ public class Connect {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             String jdbc = "jdbc:mysql://" + System.getenv("OPENSHIFT_MYSQL_DB_HOST") + ":"
-                    + System.getenv("OPENSHIFT_MYSQL_DB_PORT") + "/java";
+                    + System.getenv("OPENSHIFT_MYSQL_DB_PORT") + "/java2";
             String user = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
             String pass = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
             conn = DriverManager.getConnection(jdbc, user, pass);
